@@ -300,3 +300,52 @@ body {
 	position: fixed;
 	left: -100%;
 }
+ {
+	margin: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+div, h1, h2, h3, h4, p, a, li, tr, td, textarea, button, input, select, span {
+	font-weight: 300;
+	font-family: poppins,Poppins,Arial,sans-serif;
+	color: inherit;
+}
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+.smedias .smedia {
+	width: 25px;
+	height: 25px;
+	display: block;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25px;
+	border-radius: 3px;
+}
+.smedias .youtube {
+	background-image: url(https://cdn.wearedevs.net/images/icons/youtube.png);
+}
+.smedias {
+	position: fixed;
+	bottom: 12px;
+	right: 12px;
+	z-index: 1;
+}
+body {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+body {
+	background-color: #2f3136;
+	color: #ecf0f1;
+}
+:root {
+	--padding: 12px: ;
+	--font-size: 16px: ;
+	--padding: 12px: ;
+	--less-padding: 9px: ;
+	--round: 16px: ;
+	--less-round: 9px: ;
+}
