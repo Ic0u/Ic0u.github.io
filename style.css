@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;1,200&display=swap");
 
 * {
 	margin: 0;
@@ -7,7 +7,7 @@
 
 body,
 html {
-	font-family: "Lato", sans-serif;
+        font-family: 'Source Sans Pro', sans-serif;
 	overflow: hidden;
 	user-select: none;
 	cursor: url(cursor.png) 16 16, auto !important;
@@ -155,7 +155,7 @@ main .header .emojis {
 	margin-top: 10px;
 }
 * {
-	font-family: "Lato",sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 }
 body {
 	background: var(--main);
