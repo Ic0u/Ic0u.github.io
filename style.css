@@ -99,6 +99,62 @@ Main .header .icons i:hover {
 	right: 0;
 	top: 0;
 }
+#content .title {
+    color: #940000;
+    text-transform: uppercase;
+    padding-top: 42.5vh;
+    font-weight: 800;
+    font-size: 4rem;
+    text-align: center;
+  }
+  
+  #content .title span {
+    color: #fff;
+  }
+  
+  #content ul {
+    list-style: none;
+    padding: 0;
+    margin-top: -10px;
+    text-align: center;
+  }
+  
+  #content ul li {
+    display: inline-block;
+    padding: 0;
+  }
+  
+  #content ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  
+  #content ul li:hover a, #content ul li:focus a, #content ul li:active a {
+    transition: 100ms linear;
+    color: #550303;
+  }
+  
+  #content ul li.divider {
+    color: #7a4406;
+    padding: 0px 10px;
+  }
+  
+  #content img {
+    height: 72px;
+    padding: 0;
+  }
+  
+  #content .scroller {
+    text-align: center;
+    padding: 0;
+    display: block;
+    margin-top: 36.5vh;
+  }
+  
 
 #products .title {
     font-size: 2.5rem;
