@@ -110,6 +110,13 @@ Main .header .icons i:hover {
     padding-top: 150px;
   }
   
+
+
+#products {
+    background-image: linear-gradient(#191919, #141414);
+  }
+
+
   #products .line {
     display: block;
     margin: 0 auto;
