@@ -100,6 +100,34 @@ Main .header .icons i:hover {
 	top: 0;
 }
 
+#products .title {
+    font-size: 2.5rem;
+    color: #fff;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 150px;
+  }
+  
+  #products .line {
+    display: block;
+    margin: 0 auto;
+    width: 50px;
+    margin-top: 2.5px;
+    background: #eb6834;;
+    height: 2px;
+  }
+  
+  #products .text {
+    color: #a6a6a6;
+    text-align: center;
+    letter-spacing: 1px;
+    padding-top: 10px;
+    font-size: 1.15rem;
+    padding-bottom: 75px;
+  }
+
 .stars1 {
 	animation: space 180s ease-in-out infinite;
 	background-image: radial-gradient(1px 1px at 25px 5px, white, rgba(255, 255, 255, 0)), radial-gradient(1px 1px at 50px 25px, white, rgba(255, 255, 255, 0)),
