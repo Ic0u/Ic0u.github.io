@@ -99,6 +99,7 @@ Main .header .icons i:hover {
 	right: 0;
 	top: 0;
 }
+
 #content .title {
     color: #940000;
     text-transform: uppercase;
@@ -113,19 +114,7 @@ Main .header .icons i:hover {
   }
   
   
-  #content ul li {
-    display: inline-block;
-    padding: 0;
-  }
   
-  #content ul li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0;
-    font-size: 1.1rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
   
   #content ul li:hover a, #content ul li:focus a, #content ul li:active a {
     transition: 100ms linear;
