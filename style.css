@@ -112,12 +112,6 @@ Main .header .icons i:hover {
     color: #fff;
   }
   
-  #content ul {
-    list-style: none;
-    padding: 0;
-    margin-top: -10px;
-    text-align: center;
-  }
   
   #content ul li {
     display: inline-block;
