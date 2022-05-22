@@ -340,6 +340,18 @@ body {
 	background-color: #2f3136;
 	color: #ecf0f1;
 }
+
+
+  body::-webkit-scrollbar-track {
+    background: #333;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #eb6834;
+    border-radius: 6px;
+    border: 3px solid #333;
+  }
+
 :root {
 	--padding: 12px: ;
 	--font-size: 16px: ;
@@ -348,3 +360,14 @@ body {
 	--round: 16px: ;
 	--less-round: 9px: ;
 }
+
+  .container{
+    flex: row;
+    flex-direction: row;
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+  }
