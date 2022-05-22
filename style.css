@@ -100,14 +100,6 @@ Main .header .icons i:hover {
 	top: 0;
 }
 
-#content .title {
-    color: #940000;
-    text-transform: uppercase;
-    padding-top: 42.5vh;
-    font-weight: 800;
-    font-size: 4rem;
-    text-align: center;
-  }
   
 .stars1 {
 	animation: space 180s ease-in-out infinite;
