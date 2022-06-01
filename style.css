@@ -6,7 +6,7 @@
 
 body,
 html {
-        font-family: 'Lato', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 	overflow: hidden;
 	user-select: none;
 	cursor: url(cursor.png) 16 16, auto !important;
