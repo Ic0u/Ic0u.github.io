@@ -965,3 +965,35 @@ section {
   height: 100vh;
   flex-direction: column;
 }
+nav{
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    padding: 2% 5% 0;
+    z-index: 100;
+    margin-left: 34%;
+    z-index: 20;
+}
+  
+nav ul{
+    flex: 1;
+    align-items: center;
+    margin-right: 9%;
+}
+  
+/*nav ul li{
+    /*display: inline-block;*/
+    /*position: fixed;
+    margin-top: 27%;
+    margin-left: 1%;
+    float: left;
+}*/
+  
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    /*transition: color 0.5s;
+    background-size: 0;*/
+}
