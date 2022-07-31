@@ -6,7 +6,7 @@ var audio = new Audio("assets/sometunes.mp3");
 function play() {
 	started = !started;
 	if (started) {
-		audio.volume = 0.1;
+		audio.volume = 10;
 		audio.play();
 		document.getElementById("playbutton").style.display = "none";
 		document.getElementById("pausebutton").style.display = "block";
