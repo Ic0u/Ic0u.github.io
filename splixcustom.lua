@@ -4088,35 +4088,36 @@ do
             })
             local config = Settings:Section("Configuration", "Right")
 
-config:TextBox({Title = "Name", Current = "", Flag = "lmao"})
+configed:TextBox({Title = "Name", Current = "", Flag = "lmao"})
 
-config:Button({Title = "Create", Callback = function()
+configed:Button({Title = "Create", Callback = function()
     if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
         Utility.SaveConfig(Library.Flags["lmao"])
         window.SendNotification("Normal", ("Created %s Config"):format(Library.Flags["lmao"]), 4)
     end
 end})
 
-config:Button({Title = "Load", Callback = function()
+configed:Button({Title = "Load", Callback = function()
     if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
         Utility.LoadConfig(Library.Flags["lmao"])
         window.SendNotification("Normal", ("Loaded %s Config"):format(Library.Flags["lmao"]), 4)
     end
 end})
 
-config:Button({Title = "Save", Callback = function()
+configed:Button({Title = "Save", Callback = function()
     if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
         Utility.SaveConfig(Library.Flags["lmao"])
         window.SendNotification("Normal", ("Saved %s Config"):format(Library.Flags["lmao"]), 4)
     end
 end})
 
-config:Button({Title = "Delete", Callback = function()
+configed:Button({Title = "Delete", Callback = function()
     if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
         Utility.DeleteConfig(Library.Flags["lmao"])
         window.SendNotification("Normal", ("Deleted %s Config"):format(Library.Flags["lmao"]), 4)
     end
 end})
+
             local ClickGUI = Settings:Section("Click GUI", "Right")
             
             ClickGUI:Toggle({
