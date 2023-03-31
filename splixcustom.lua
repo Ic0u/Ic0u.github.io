@@ -3990,9 +3990,39 @@ do
             
             
             local Profile = Settings:Section("Profiles", "Right")
+            Profile:TextBox({Title = "Workspace Name", Current = "", Flag = "lmao"})
+
+Profile:Button({Title = "Create", Callback = function()
+    if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
+        Utility.SaveConfig(Library.Flags["lmao"])
+        window.SendNotification("Normal", ("Created %s Config"):format(Library.Flags["lmao"]), 4)
+    end
+end})
+
+Profile:Button({Title = "Load", Callback = function()
+    if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
+        Utility.LoadConfig(Library.Flags["lmao"])
+        window.SendNotification("Normal", ("Loaded %s Config"):format(Library.Flags["lmao"]), 4)
+    end
+end})
+
+Profile:Button({Title = "Save", Callback = function()
+    if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
+        Utility.SaveConfig(Library.Flags["lmao"])
+        window.SendNotification("Normal", ("Saved %s Config"):format(Library.Flags["lmao"]), 4)
+    end
+end})
+
+Profile:Button({Title = "Delete", Callback = function()
+    if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
+        Utility.DeleteConfig(Library.Flags["lmao"])
+        window.SendNotification("Normal", ("Deleted %s Config"):format(Library.Flags["lmao"]), 4)
+    end
+end})
+  
             Profile:Dropdown({
                 Title = "Theme Profile",
-                List = {"Default", "Neverlose", "Fatality", "Aimware", "Onetap", "Vape", "Gamesesne", "OldAbyss"},
+                List = {"Default", "Octohook", "Neverlose", "Fatality", "Aimware", "Onetap", "Vape", "Gamesesne", "OldAbyss"},
                 Default = "Default",
                 Callback = function(Choosen)
                     if Choosen == "Default" then
