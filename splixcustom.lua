@@ -3989,7 +3989,7 @@ do
             end})
             
             
-            local Profile =Settings:Section("Profiles", "Right")
+            local Profile = Settings:Section("Profiles", "Right")
             Profile:Dropdown({
                 Title = "Theme Profile",
                 List = {"Default", "Neverlose", "Fatality", "Aimware", "Onetap", "Vape", "Gamesesne", "OldAbyss"},
