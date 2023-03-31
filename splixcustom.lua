@@ -3988,39 +3988,7 @@ do
                 LocalTheme.TextInactive = Color
             end})
             
-            
-            local Profile = Settings:Section("Profiles", "Right")
-            Profile:TextBox({Title = "Workspace Name", Current = "", Flag = "lmao"})
-
-Profile:Button({Title = "Create", Callback = function()
-    if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
-        Utility.SaveConfig(Library.Flags["lmao"])
-        window.SendNotification("Normal", ("Created %s Config"):format(Library.Flags["lmao"]), 4)
-    end
-end})
-
-Profile:Button({Title = "Load", Callback = function()
-    if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
-        Utility.LoadConfig(Library.Flags["lmao"])
-        window.SendNotification("Normal", ("Loaded %s Config"):format(Library.Flags["lmao"]), 4)
-    end
-end})
-
-Profile:Button({Title = "Save", Callback = function()
-    if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
-        Utility.SaveConfig(Library.Flags["lmao"])
-        window.SendNotification("Normal", ("Saved %s Config"):format(Library.Flags["lmao"]), 4)
-    end
-end})
-
-Profile:Button({Title = "Delete", Callback = function()
-    if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
-        Utility.DeleteConfig(Library.Flags["lmao"])
-        window.SendNotification("Normal", ("Deleted %s Config"):format(Library.Flags["lmao"]), 4)
-    end
-end})
-  
-            Profile:Dropdown({
+            Theme:Dropdown({
                 Title = "Theme Profile",
                 List = {"Default", "Octohook", "Neverlose", "Fatality", "Aimware", "Onetap", "Vape", "Gamesesne", "OldAbyss"},
                 Default = "Default",
@@ -4118,37 +4086,37 @@ end})
                     end
                 end
             })
-            Profile:TextBox({Title = "Workspace Profile", Current = "", Flag = "lmao"})
+            local config = Settings:Section("Configuration", "Right")
 
-Profile:Button({Title = "Create Config", Callback = function()
+config:TextBox({Title = "Name", Current = "", Flag = "lmao"})
+
+config:Button({Title = "Create", Callback = function()
     if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
         Utility.SaveConfig(Library.Flags["lmao"])
         window.SendNotification("Normal", ("Created %s Config"):format(Library.Flags["lmao"]), 4)
     end
 end})
 
-Profile:Button({Title = "Load Config", Callback = function()
+config:Button({Title = "Load", Callback = function()
     if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
         Utility.LoadConfig(Library.Flags["lmao"])
         window.SendNotification("Normal", ("Loaded %s Config"):format(Library.Flags["lmao"]), 4)
     end
 end})
 
-Profile:Button({Title = "Save Config", Callback = function()
+config:Button({Title = "Save", Callback = function()
     if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
         Utility.SaveConfig(Library.Flags["lmao"])
         window.SendNotification("Normal", ("Saved %s Config"):format(Library.Flags["lmao"]), 4)
     end
 end})
 
-Profile:Button({Title = "Delete Config", Callback = function()
+config:Button({Title = "Delete", Callback = function()
     if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
         Utility.DeleteConfig(Library.Flags["lmao"])
         window.SendNotification("Normal", ("Deleted %s Config"):format(Library.Flags["lmao"]), 4)
     end
 end})
-
-            
             local ClickGUI = Settings:Section("Click GUI", "Right")
             
             ClickGUI:Toggle({
