@@ -4086,7 +4086,7 @@ do
                     end
                 end
             })
-            local config = Settings:Section("Configuration", "Right")
+            local configed = Settings:Section("Configuration", "Right")
 
 configed:TextBox({Title = "Name", Current = "", Flag = "lmao"})
 
