@@ -3988,8 +3988,10 @@ do
                 LocalTheme.TextInactive = Color
             end})
             
-            Theme:Dropdown({
-                Title = "Theme",
+            
+            local Profile =Settings:Section("Profiles", "Right")
+            Profile:Dropdown({
+                Title = "Theme Profile",
                 List = {"Default", "Neverlose", "Fatality", "Aimware", "Onetap", "Vape", "Gamesesne", "OldAbyss"},
                 Default = "Default",
                 Callback = function(Choosen)
@@ -4086,6 +4088,7 @@ do
                     end
                 end
             })
+            
             
             local ClickGUI = Settings:Section("Click GUI", "Right")
             
