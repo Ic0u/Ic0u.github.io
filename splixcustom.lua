@@ -28,11 +28,11 @@ local Stats = Secure.Stats.Network.ServerStatsItem["Data Ping"]
 local Library = {
     Theme = {
         Accent = {
-            Color3.fromHex("#c37be5"), -- Color3.fromHex("#a280d9"), -- Color3.fromRGB(255, 42, 10), Color3.fromHex("#3599d4")
-            Color3.fromRGB(180, 156, 255),
-            Color3.fromRGB(114, 0, 198),
-            Color3.fromRGB(139, 130, 185),
-            Color3.fromHex("#a83299")
+            Color3.fromHex("#0xFF8200"), -- Color3.fromHex("#a280d9"), -- Color3.fromRGB(255, 42, 10), Color3.fromHex("#3599d4")
+            Color3.fromRGB(255, 146, 17),
+            Color3.fromHex("#F2921D"),
+            Color3.fromRGB("#F99417"),
+            Color3.fromHex("#FF8B13")
         },
         Notification = {
             Error = Color3.fromHex("#c82828"),
@@ -40,11 +40,11 @@ local Library = {
         },
         Hitbox = Color3.fromRGB(69, 69, 69),
         Friend = Color3.fromRGB(0, 200, 0),
-        Outline = Color3.fromHex("#000005"),
-        Inline = Color3.fromHex("#3c3c3c"),
+        Outline = Color3.fromHex("#0x383838"),
+        Inline = Color3.fromHex("#0x383838"),
         LightContrast = Color3.fromHex("#231946"),
         DarkContrast = Color3.fromHex("#191432"),
-        Text = Color3.fromHex("#c8c8ff"),
+        Text = Color3.fromHex("#d6d9e0"),
         TextInactive = Color3.fromHex("#afafaf"),
         Font = Drawing.Fonts.Plex,
         TextSize = 13,
