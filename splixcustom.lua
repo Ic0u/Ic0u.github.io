@@ -4379,7 +4379,7 @@ do
             
             Theme:Dropdown({
                 Title = "Theme",
-                List = {"Default", "Neverlose", "Fatality", "Aimware", "Onetap", "Vape", "Gamesense", "OldAbyss"},
+                List = {"Default", "Akiri", "Neverlose", "Fatality", "Aimware", "Onetap", "Vape", "Gamesense", "Abyss", "OldAbyss"},
                 Default = "Default",
                 Callback = function(Choosen)
                     if Choosen == "Default" then
@@ -4391,6 +4391,16 @@ do
                             DarkContrast = Color3.fromHex("#191432"),
                             Text = Color3.fromHex("#c8c8ff"),
                             TextInactive = Color3.fromHex("#afafaf")
+                        })
+                    elseif Choosen == "Akiri" then
+                        Library:UpdateTheme({
+                            Outline = Color3.fromHex("#000005"),
+                            Inline = Color3.fromHex("#3c3c3c"),
+                            Accent = Color3.fromHex("##322850"),
+                            Text = Color3.fromHex("#c8c8ff"),
+                            TextInactive = Color3.fromHex("#afafaf"),
+                            LightContrast = Color3.fromHex("#231946"),
+                            DarkContrast = Color3.fromHex("#191432"),
                         })
                     elseif Choosen == "Neverlose" then
                         Library:UpdateTheme({
@@ -4453,6 +4463,16 @@ do
                             DarkContrast = Color3.fromHex("#1a1a1a"),
                         })
                     elseif Choosen == "Gamesense" then
+                        Library:UpdateTheme({
+                            Outline = Color3.fromHex("#000000"),
+                            Inline = Color3.fromHex("#4e5158"),
+                            Accent = Color3.fromHex("#a7d94d"),
+                            Text = Color3.fromHex("#ffffff"),
+                            TextInactive = Color3.fromHex("#afafaf"),
+                            LightContrast = Color3.fromHex("#171717"),
+                            DarkContrast = Color3.fromHex("#0c0c0c"),
+                        })
+                    elseif Choosen == "Abyss" then
                         Library:UpdateTheme({
                             Outline = Color3.fromHex("#000000"),
                             Inline = Color3.fromHex("#4e5158"),
