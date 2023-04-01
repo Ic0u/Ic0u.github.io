@@ -1,6 +1,6 @@
 -- // Lib \\ --
 --[[
-    local UI = loadstring(game:HttpGet("https://abyss.best/assets/files/gayasf.ui2?key=5y1lxXSfWKhlQkSqhUuFyB8kPp8hsCau"))()
+    local UI = loadstring(game:HttpGet("https://akiri.best/assets/files/gayasf.ui2?key=5y1lxXSfWKhlQkSqhUuFyB8kPp8hsCau"))()
 ]]
 -- // Library Init \\ --
 local Start = tick()
@@ -20,14 +20,15 @@ local Camera = Workspace.CurrentCamera
 local HttpService = Secure.HttpService
 local Mouse = LocalPlayer:GetMouse()
 local InputGUI = Instance.new("ScreenGui", CoreGui)
--- local Stats = Secure.Stats.Network.ServerStatsItem["Data Ping"] 
+
+local Stats = Secure.Stats.Network.ServerStatsItem["Data Ping"] 
 --
 -- Aimware = {6, [[{"Outline":"000005","Accent":"c82828","LightText":"e8e8e8","DarkText":"afafaf","LightContrast":"2b2b2b","CursorOutline":"191919","DarkContrast":"191919","TextBorder":"0a0a0a","Inline":"373737"}]]},
 --
 local Library = {
     Theme = {
         Accent = {
-            Color3.fromHex("#7885f5"), -- Color3.fromHex("#a280d9"), -- Color3.fromRGB(255, 42, 10), Color3.fromHex("#3599d4")
+            Color3.fromHex("#c37be5"), -- Color3.fromHex("#a280d9"), -- Color3.fromRGB(255, 42, 10), Color3.fromHex("#3599d4")
             Color3.fromRGB(180, 156, 255),
             Color3.fromRGB(114, 0, 198),
             Color3.fromRGB(139, 130, 185),
@@ -40,14 +41,14 @@ local Library = {
         Hitbox = Color3.fromRGB(69, 69, 69),
         Friend = Color3.fromRGB(0, 200, 0),
         Outline = Color3.fromHex("#000005"),
-        Inline = Color3.fromHex("#323232"),
-        LightContrast = Color3.fromHex("#202020"),
-        DarkContrast = Color3.fromHex("#191919"),
-        Text = Color3.fromHex("#e8e8e8"),
-        TextInactive = Color3.fromHex("#aaaaaa"),
+        Inline = Color3.fromHex("#3c3c3c"),
+        LightContrast = Color3.fromHex("#231946"),
+        DarkContrast = Color3.fromHex("#191432"),
+        Text = Color3.fromHex("#c8c8ff"),
+        TextInactive = Color3.fromHex("#afafaf"),
         Font = Drawing.Fonts.Plex,
         TextSize = 13,
-        UseOutline = false
+        UseOutline = true
     },
     Icons = {},
     Flags = {},
@@ -88,6 +89,14 @@ do
         end
         --
         return NewInstance
+    end
+    --
+    function Utility.CloneTbl(T)
+        local Tbl = {}
+        for Index, Value in pairs(T) do
+            Tbl[Index] = Value
+        end
+        return Tbl
     end
     --
     Utility.CLCheck = function()
@@ -184,6 +193,7 @@ do
         return Instance
     end
     --
+    --Loni
     Utility.OnMouse = function(Instance)
         local Mouse = UserInput:GetMouseLocation()
         if Instance.Visible and (Mouse.X > Instance.Position.X) and (Mouse.X < Instance.Position.X + Instance.Size.X) and (Mouse.Y > Instance.Position.Y) and (Mouse.Y < Instance.Position.Y + Instance.Size.Y) then
@@ -232,6 +242,11 @@ do
             --
             DragUtility.MouseEnd = UserInput:GetMouseLocation()
         end)
+    end
+    --
+    function Utility.HSVToRGB(HSVColor)
+        local R, G, B = HSVColor.R * 255, HSVColor.G * 255, HSVColor.B * 255
+	    return R, G, B
     end
     --
     Utility.AddCursor = function(Instance)
@@ -285,36 +300,40 @@ do
     end
     --
     Utility.SaveConfig = function(Config)
+        local CFG = Utility.CloneTbl(Library.Flags)
+        for Index, Value in pairs(CFG) do
+            if Library.Items[Index].TypeOf == "Colorpicker" then
+                local HH, SS, VV = Utility.HSVToRGB(CFG[Index])
+                local RR, GG, BB = Color3.fromRGB(HH, SS, VV):ToHSV()
+                CFG[Index] = {RR, GG, BB}
+            end
+        end
         writefile(
-            "Abyss/Configs/" .. tostring(game.PlaceId) .. "/" .. Config .. ".json", 
-            HttpService:JSONEncode(UISettings.Flags)
+            "Ravenware/Configs/" .. tostring(game.PlaceId) .. "/" .. Config .. ".json", 
+            HttpService:JSONEncode(CFG)
         )
     end
     --
     Utility.DeleteConfig = function(Config)
         delfile(
-            "Abyss/Configs/" .. tostring(game.PlaceId) .. "/" .. Config .. ".json"
+            "Ravenware/Configs/" .. tostring(game.PlaceId) .. "/" .. Config .. ".json"
         )
     end
     --
     Utility.LoadConfig = function(Config)
-        local Config = HttpService:JSONDecode(readfile("Abyss/Configs/" .. tostring(game.PlaceId) .. "/" .. Config .. ".json"))
+        local CFG = HttpService:JSONDecode(readfile("Ravenware/Configs/" .. tostring(game.PlaceId) .. "/" .. Config .. ".json"))
         --
-        Library.Flags = LoadedConfig
-        --
-        for Index, Value in pairs(Library.Flags) do
+        for Index, Val in pairs(CFG) do
             if Library.Items[Index].TypeOf == "Keybind" then
-                Library.Items[Index]:Set(Value[1], Value[2], Value[3], true)
+                Library.Items[Index]:Set(Val[1], Val[2], Val[3], true)
             elseif Library.Items[Index].TypeOf == "Colorpicker" then
-                Library.Items[Index]:SetHue(Value[1])
-                Library.Items[Index]:SetSaturationX(Value[2])
-                Library.Items[Index]:SetSaturationY(Value[3])
-            else
-                Library.Items[Index]:Set(Value)
+                Library.Items[Index]:SetHue({Value = Val[1]})
+                Library.Items[Index]:SetSaturationX({Value = Val[2]})
+                Library.Items[Index]:SetSaturationY({Value = Val[3]})
+            elseif  Library.Items[Index].TypeOf == "Slider" or Library.Items[Index].TypeOf == "Toggle" then
+                Library.Items[Index]:Set(Val)
             end
         end
-        --
-        rconsoleinfo("Debug: Loaded a config! 0 error.")
     end
     --
     Utility.AddFolder = function(GetFolder)
@@ -348,7 +367,7 @@ do
             Max = 2, Current = 0
         }
         --
-        Library.Theme.Logo = Utility.AddImage("Abyss/Assets/UI/Logo2.png", "https://i.imgur.com/HI4UTmZ.png")
+        Library.Theme.Logo = Utility.AddImage("Ravenware/Assets/UI/Logo2.png", "https://i.imgur.com/KC1ilvB.png")
         --
         local WindowOutline = Utility.AddDrawing("Square", {
             Size = WindowSize,
@@ -474,24 +493,29 @@ do
         --
         Window.SetText(0, "UI Initialization [ Downloading ]")
         --
-        Utility.AddFolder("Abyss")
-        Utility.AddFolder("Abyss/Caches")
-        Utility.AddFolder("Abyss/Assets")
-        Utility.AddFolder("Abyss/Assets/UI")
-        Utility.AddFolder("Abyss/Configs")
-        Utility.AddFolder("Abyss/Scripts")
+        Utility.AddFolder("Ravenware")
+        Utility.AddFolder("Ravenware/Caches")
+        Utility.AddFolder("Ravenware/Assets")
+        Utility.AddFolder("Ravenware/Assets/UI")
+        Utility.AddFolder("Ravenware/Configs")
+        Utility.AddFolder("Ravenware/Scripts")
         --
-        Library.Theme.Gradient = Utility.AddImage("Abyss/Assets/UI/Gradient.png", "https://raw.githubusercontent.com/mvonwalk/Exterium/main/Gradient.png")
-        -- Library.Theme.SecondIcon = Utility.AddImage("Abyss/Assets/UI/Gradient.png", "https://raw.githubusercontent.com/mvonwalk/Exterium/main/Gradient.png")
-        Library.Theme.Hue = Utility.AddImage("Abyss/Assets/UI/Hue.png", "https://raw.githubusercontent.com/mvonwalk/Exterium/main/HuePicker.png")
-        Library.Theme.Saturation = Utility.AddImage("Abyss/Assets/UI/Saturation.png", "https://raw.githubusercontent.com/mvonwalk/Exterium/main/SaturationPicker.png")
-        Library.Theme.SaturationCursor = Utility.AddImage("Abyss/Assets/UI/HueCursor.png", "https://raw.githubusercontent.com/mvonwalk/splix-assets/main/Images-cursor.png")
+        Library.Theme.Gradient = Utility.AddImage("Ravenware/Assets/UI/Gradient.png", "https://raw.githubusercontent.com/mvonwalk/Exterium/main/Gradient.png")
+        -- Library.Theme.SecondIcon = Utility.AddImage("akiri/Assets/UI/Gradient.png", "https://raw.githubusercontent.com/mvonwalk/Exterium/main/Gradient.png")
+        Library.Theme.Hue = Utility.AddImage("Ravenware/Assets/UI/Hue.png", "https://raw.githubusercontent.com/mvonwalk/Exterium/main/HuePicker.png")
+        Library.Theme.Saturation = Utility.AddImage("Ravenware/Assets/UI/Saturation.png", "https://raw.githubusercontent.com/mvonwalk/Exterium/main/SaturationPicker.png")
+        Library.Theme.SaturationCursor = Utility.AddImage("Ravenware/Assets/UI/HueCursor.png", "https://raw.githubusercontent.com/mvonwalk/splix-assets/main/Images-cursor.png")
         --
-        Library.Theme.Astolfo = Utility.AddImage("Abyss/Assets/UI/Astolfo.png", "https://i.imgur.com/T20cWY9.png")
-        Library.Theme.Aiko = Utility.AddImage("Abyss/Assets/UI/Aiko.png", "https://i.imgur.com/1gRIdko.png")
-        Library.Theme.Rem = Utility.AddImage("Abyss/Assets/UI/Rem.png", "https://i.imgur.com/ykbRkhJ.png")
-        Library.Theme.Violet = Utility.AddImage("Abyss/Assets/UI/Violet.png", "https://i.imgur.com/7B56w4a.png")
-        Library.Theme.Asuka = Utility.AddImage("Abyss/Assets/UI/Asuka.png", "https://i.imgur.com/3hwztNM.png")
+        Library.Theme.Dummy = Utility.AddImage("Ravenware/Assets/UI/Dummy.png", "https://i.imgur.com/6M6buVv.png")
+        Library.Theme.Astolfo = Utility.AddImage("Ravenware/Assets/UI/Astolfo.png", "https://i.imgur.com/T20cWY9.png")
+        Library.Theme.Aiko = Utility.AddImage("Ravenware/Assets/UI/Aiko.png", "https://i.imgur.com/1gRIdko.png")
+        Library.Theme.Rem = Utility.AddImage("Ravenware/Assets/UI/Rem.png", "https://i.imgur.com/ykbRkhJ.png")
+        Library.Theme.Violet = Utility.AddImage("Ravenware/Assets/UI/Violet.png", "https://i.imgur.com/7B56w4a.png")
+        Library.Theme.Asuka = Utility.AddImage("Ravenware/Assets/UI/Asuka.png", "https://i.imgur.com/3hwztNM.png")
+        --
+        if not isfolder("Ravenware/Configs/" .. game.PlaceId) then
+            makefolder("Ravenware/Configs/" .. game.PlaceId)
+        end
         --
         Window.SetText(1, "Checking Assets")
         --
@@ -755,7 +779,7 @@ do
             Position = Vector2.new(WindowFrame.Position.X + (WindowFrame.Size.X / 2) - 35, WindowFrame.Position.Y - 4),
             Transparency = 1,
             ZIndex = 3,
-            Visible = false,
+            Visible = true,
             Data = Library.Theme.Logo
         })
         --
@@ -786,7 +810,7 @@ do
             Size = WindowFrame.Size,
             Position = WindowFrame.Position,
             Transparency = 1, 
-            Visible = true,
+            Visible = false,
             Data = Library.Theme.Gradient
         })
         --
@@ -802,8 +826,8 @@ do
         })
         --
         local SecondBorderInline = Utility.AddDrawing("Square", {
-            Size = Vector2.new(Size.X - 17, Size.Y - 50),
-            Position = Vector2.new(WindowOutlineBorder.Position.X + 8, WindowOutlineBorder.Position.Y + 42),
+            Size = Vector2.new(Size.X - 17, Size.Y - 90),
+            Position = Vector2.new(WindowOutlineBorder.Position.X + 8, WindowOutlineBorder.Position.Y + 82),
             Thickness = 0,
             Color = Library.Theme.Inline,
             Visible = true,
@@ -1141,7 +1165,8 @@ do
             --
             function Tab:Section(Title, Side)
                 local Section = {
-                    ContentAxis = 0
+                    ContentAxis = 0,
+                    Name = Title
                 }
                 --
                 local AxisX = Side == "Left" and SecondBorderOutline.Position.X + 6 or SecondBorderOutline.Position.X + ((SecondBorderOutline.Size.X / 2) - 10) + 12
@@ -1215,6 +1240,7 @@ do
                 --
                 function Section:Toggle(Options)
                     local Toggle = {
+                        TypeOf = "Toggle",
                         Axis = Section.ContentAxis,
                         Toggled = Options.State,
                         Drop = false,
@@ -1223,6 +1249,8 @@ do
                     --
                     Options.Flag = Options.Flag or "AWGWJIjgAWJIGIJAWG"
                     Library.Flags[Options.Flag] = false
+                    --
+                    Library.Items[Options.Flag] = Toggle
                     --
                     local ToggleInline = Utility.AddDrawing("Square", {
                         Position = Vector2.new(SectionInline.Position.X + 8, SectionInline.Position.Y + 23 + Toggle.Axis),
@@ -1267,7 +1295,7 @@ do
                         Outline = false,
                         Font = Library.Theme.Font,
                         Size = Library.Theme.TextSize,
-                        Color = Options.Type ~= nil and Options.Type == "Dangerous" and Library.Theme.Accent[1] or Library.Theme.Text,
+                        Color = Options.Type ~= nil and Options.Type == "Dangerous" and Color3.fromRGB(255, 255, 0) or Library.Theme.Text,
                         Visible = true,
                         ZIndex = 2
                     })
@@ -1306,7 +1334,7 @@ do
                         if Type == "Accent" and Toggle.Toggled then
                             ToggleOutline.Color = Color
                             if Options.Type == "Dangerous" then
-                                ToggleTitle.Color = Color
+                                -- ToggleTitle.Color = Color
                             end
                         elseif Type == "LightContrast" and not Toggle.Toggled then
                             ToggleOutline.Color = Color
@@ -1333,6 +1361,7 @@ do
                     --
                     function Toggle:Colorpicker(Options)
                         local Colorpicker = {
+                            TypeOf = "Colorpicker",
                             Axis = Section.ContentAxis,
                             Color = Options.Color,
                             HexColor = Options.Color:ToHex(),
@@ -1353,7 +1382,9 @@ do
                         }
                         --
                         Colorpicker.Flag = Colorpicker.Flag or "AWIJGHUIWGHuAW"
-                        Library.Flags[Colorpicker.Flag] = Colorpicker.HexColor
+                        Library.Flags[Colorpicker.Flag] = HexColor
+                        --
+                        Library.Items[Colorpicker.Flag] = Colorpicker
                         --
                         local H, S, V = Colorpicker.Color:ToHSV()
                         Colorpicker.Colors.HSV[1] = H
@@ -1778,6 +1809,11 @@ do
                             if Useless then
                                 return
                             end
+                            if Utility.OnMouse(ColorpickerInline) then
+                                ColorpickerInline.Color = Library.Theme.Accent[1]
+                            else
+                                ColorpickerInline.Color = Library.Theme.Inline
+                            end
                             if Input.UserInputType == Enum.UserInputType.MouseMovement then
                                 for Index, Value in pairs(Tab.Dropdowns[Side]) do
                                     if Index ~= ToggleTitle.Text and Value then
@@ -1854,6 +1890,7 @@ do
                     --
                     function Toggle:Keybind(Options)
                         local Keybind = {
+                            TypeOf = "Keybind",
                             Axis = Section.ContentAxis,
                             Title = Options.Title or "LOL",
                             EnumType = Options.Key.EnumType == Enum.KeyCode and "KeyCode" or "UserInputType",
@@ -1870,6 +1907,8 @@ do
                         --
                         Options.Flag = Options.Flag or "AWGWJIjgAWJIGIJAWG"
                         Library.Flags[Options.Flag] = Keybind.State
+                        --
+                        Library.Items[Options.Flag] = Keybind.Title
                         --
                         if Keybind.StateType == "Always" then
                             Keybind.Callback(Keybind.State, Keybind.Key)
@@ -2235,6 +2274,8 @@ do
                     Options.Flag = Options.Flag or "AWGWJIjgAWJIGIJAWG"
                     Library.Flags[Options.Flag] = Slider.Default
                     --
+                    Library.Items[Options.Flag] = Slider
+                    --
                     if Slider.Min > Slider.Max then 
                         Slider.Min = Slider.Max - 1 
                     end
@@ -2534,8 +2575,172 @@ do
                     return Button
                 end
                 --
+                function Section:TextBox(Options)
+                    local TextBox = {
+                        TypeOf = "TextBox",
+                        Title = Options.Title or "LMAO",
+                        Axis = Section.ContentAxis,
+                        Callback = typeof(Options.Callback) == "function" and Options.Callback or function() end,
+                        Current = Options.Current or "",
+                        Inputting = false,
+                        Deleting = false
+                    }
+                    --
+                    Options.Flag = Options.Flag or "AWGWJIjgAWJIGIJAWG"
+                    Library.Flags[Options.Flag] = TextBox.Current
+                    --
+                    Library.Items[Options.Flag] = TextBox
+                    --
+                    local TextBoxInline = Utility.AddDrawing("Square", {
+                        Position = Vector2.new(SectionInline.Position.X + 8, SectionInline.Position.Y + 34 + TextBox.Axis),
+                        Size = Vector2.new(SectionOutline.Size.X - 12, 18),
+                        Thickness = 0,
+                        Color = Library.Theme.Inline,
+                        Visible = true,
+                        Filled = true
+                    })
+                    --
+                    local TextBoxOutline = Utility.AddDrawing("Square", {
+                        Size = Vector2.new(TextBoxInline.Size.X - 2, TextBoxInline.Size.Y - 2),
+                        Position = Vector2.new(TextBoxInline.Position.X + 1, TextBoxInline.Position.Y + 1),
+                        Thickness = 0,
+                        Color = Library.Theme.LightContrast, --Library.Theme.Outline,
+                        Visible = true,
+                        Filled = true
+                    })
+                    --
+                    local TextBoxTitle = Utility.AddDrawing("Text", {
+                        Text = Options.Title,
+                        Position = Vector2.new(TextBoxInline.Position.X + 2, TextBoxInline.Position.Y - 16),
+                        Center = false,
+                        Outline = false,
+                        Font = Library.Theme.Font,
+                        Size = Library.Theme.TextSize,
+                        Color = Library.Theme.Text,
+                        Visible = true,
+                        ZIndex = 2
+                    })
+                    --
+                    local TextBoxValue = Utility.AddDrawing("Text", {
+                        Text = Options.Current,
+                        Position = Vector2.new(TextBoxInline.Position.X + (TextBoxInline.Size.X / 2), TextBoxInline.Position.Y + 2),
+                        Center = true,
+                        Outline = false,
+                        Font = Library.Theme.Font,
+                        Size = Library.Theme.TextSize,
+                        Color = Library.Theme.Text,
+                        Visible = true,
+                        ZIndex = 2
+                    })
+                    --
+                    function TextBox:Set()
+
+                    end
+                    --
+                    local InputHandler = Instance.new("TextBox", ScreenGui)
+                    InputHandler.Position = UDim2.new(-100, 0, -100, 0)
+                    InputHandler.Name = ("Ravenware-INPUT-%s"):format(HttpService:GenerateGUID(false))
+                    --
+                    Utility.AddConnection(UserInput.InputBegan, function(Input, GameProcessed)
+                        if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+                            if Utility.OnMouse(TextBoxOutline) then
+                                for Index, Value in pairs(Tab.Dropdowns[Side]) do
+                                    if Index ~= Text then
+                                        if Value then
+                                            return
+                                        end
+                                    end
+                                end
+                                TextBox.Inputting = not TextBox.Inputting
+                                if TextBox.Inputting then
+                                    InputHandler:CaptureFocus()
+                                    TextBoxInline.Color = Library.Theme.Accent[1]
+                                else
+                                    InputHandler:ReleaseFocus()
+                                    TextBoxInline.Color = Library.Theme.Inline
+                                end
+                            else
+                                if TextBox.Inputting ~= false then
+                                    TextBox.Callback(TextBoxValue.Text)
+                                    Library.Flags[Options.Flag] = TextBoxValue.Text
+                                    TextBoxInline.Color = Library.Theme.Inline
+                                    TextBox.Inputting = false
+                                    InputHandler:ReleaseFocus()
+                                end
+                            end
+                        elseif Input.KeyCode and TextBox.Inputting then
+                            if Input.UserInputType == Enum.UserInputType.Keyboard then
+                                if Input.KeyCode == Enum.KeyCode.Backspace then
+                                    TextBox.Deleting = true
+                                    local Subbed = string.len(TextBox.Current) == 1 and "" or string.sub(TextBox.Current, 1, TextBox.Current:len() - 1)
+                                    TextBox.Current = Subbed
+                                    TextBoxValue.Text = TextBox.Current
+                                elseif Input.KeyCode == Enum.KeyCode.Return then
+                                    TextBox.Callback(TextBoxValue.Text)
+                                    Library.Flags[Options.Flag] = TextBoxValue.Text
+                                    TextBox.Inputting = false
+                                    InputHandler:ReleaseFocus()
+                                    TextBoxInline.Color = Library.Theme.Inline
+                                else
+                                    if Library.Keys.KeyBoard[Input.KeyCode.Name] then
+                                        local Check = type(Library.Keys.KeyBoard[Input.KeyCode.Name]) == "table" and (Theme.LeftShift and Library.Keys.KeyBoard[Input.KeyCode.Name][2] or Library.Keys.KeyBoard[Input.KeyCode.Name][1]) or ((Library.Input.Caplock or Library.Input.LeftShift) and Library.Keys.KeyBoard[Input.KeyCode.Name] or string.lower(Library.Keys.KeyBoard[Input.KeyCode.Name]))
+                                        TextBox.Current = TextBox.Current .. Check
+                                        TextBoxValue.Text = TextBox.Current
+                                    end
+                                end
+                            end
+                        end
+                    end)
+                    --
+                    Utility.AddConnection(UserInput.InputEnded, function(Input, GameProcessed)
+                        if Input.KeyCode == Enum.KeyCode.Backspace then
+                            TextBox.Deleting = false
+                        end
+                    end)
+                    --
+                    task.spawn(function()
+                        while task.wait(0.25) do
+                            if TextBox.Deleting then
+                                local Subbed = string.len(TextBox.Current) == 1 and "" or string.sub(TextBox.Current, 1, TextBox.Current:len() - 1)
+                                TextBox.Current = Subbed
+                                TextBoxValue.Text = TextBox.Current
+                            end
+                        end
+                    end) 
+                    --
+                    Utility.AddConnection(Library.Communication.Event, function(Type, Color)
+                        if Type == "LightContrast" then
+                            pcall(function()
+                                ButtonOutline.Color = Color
+                            end)
+                        elseif Type == "Text" then
+                            ButtonTitle.Color = Color
+                        elseif Type == "Inline" then
+                            pcall(function()
+                                ButtonInline.Color = Color
+                            end)
+                        end
+                    end)
+                    --
+                    Section.ContentAxis = Section.ContentAxis + TextBoxOutline.Size.Y + 16
+                    Tab.SectionAxis = {
+                        Side == "Left" and Tab.SectionAxis[1] + TextBoxOutline.Size.Y + 16 or Tab.SectionAxis[1], 
+                        Side == "Right" and Tab.SectionAxis[2] + TextBoxOutline.Size.Y + 16 or Tab.SectionAxis[2]
+                    }
+                    --
+                    self:UpdateSizeY(Section.ContentAxis + TextBoxOutline.Size.Y)
+                    --
+                    Tab["Render"][#Tab["Render"] + 1] = TextBoxInline
+                    Tab["Render"][#Tab["Render"] + 1] = TextBoxValue
+                    Tab["Render"][#Tab["Render"] + 1] = TextBoxOutline
+                    Tab["Render"][#Tab["Render"] + 1] = TextBoxTitle
+                    --
+                    return Button
+                end
+                --
                 function Section:Colorpicker(Options)
                     local Colorpicker = {
+                        TypeOf = "Colorpicker",
                         Axis = Section.ContentAxis,
                         Color = Options.Color,
                         HexColor = Options.Color:ToHex(),
@@ -2556,12 +2761,14 @@ do
                         Callback = typeof(Options.Callback) == "function" and Options.Callback or function() end
                     }
                     --
-                    Library.Flags[Colorpicker.Flag] = Colorpicker.HexColor
+                    Library.Items[Options.Flag] = Colorpicker
                     --
                     local H, S, V = Colorpicker.Color:ToHSV()
                     Colorpicker.Colors.HSV[1] = H
                     Colorpicker.Colors.HSV[2] = S
                     Colorpicker.Colors.HSV[3] = V
+                    --
+                    Library.Flags[Options.Flag] = Colorpicker.HexColor
                     --
                     local ColorpickerTitle = Utility.AddDrawing("Text", {
                         Text = Options.Title,
@@ -2978,11 +3185,6 @@ do
                         else
                             ColorpickerInline.Color = Library.Theme.Inline
                         end
-                        if Utility.OnMouse(ColorpickerInline) then
-                            ColorpickerInline.Color = Library.Theme.Accent[1]
-                        else
-                            ColorpickerInline.Color = Library.Theme.Inline
-                        end
                         
                         if Input.UserInputType == Enum.UserInputType.MouseMovement then
                             for Index, Value in pairs(Tab.Dropdowns[Side]) do
@@ -3082,6 +3284,8 @@ do
                     --
                     Options.Flag = Options.Flag or "AWGWJIjgAWJIGIJAWG"
                     Library.Flags[Options.Flag] = Dropdown.Selected
+                    --
+                    Library.Items[Options.Flag] = Dropdown
                     --
                     local DropdownInline = Utility.AddDrawing("Square", {
                         Position = Vector2.new(SectionInline.Position.X + 8, SectionInline.Position.Y + 23 + Dropdown.Axis + 16),
@@ -3331,6 +3535,7 @@ do
                 --
                 function Section:Label(Title)
                     local Label = {
+                        TypeOf = "Label",
                         Axis = Section.ContentAxis
                     }
                     --
@@ -3365,6 +3570,7 @@ do
                 --
                 function Section:Keybind(Options)
                     local Keybind = {
+                        TypeOf = "Keybind",
                         Axis = Section.ContentAxis,
                         Title = Options.Title and Options.Title or "LOL",
                         EnumType = Options.Key.EnumType == Enum.KeyCode and "KeyCode" or "UserInputType",
@@ -3909,6 +4115,188 @@ do
                 return PlayerList
             end
             --
+            function Tab:AddESPPreview()
+                local ESPPreviewLib = {}
+            
+                local GetEndedPosition = Vector2.new(WindowOutline.Position.X + WindowOutline.Size.X, WindowOutline.Position.Y)
+            
+                local ESPPreviewOutline = Utility.AddDrawing("Square", {
+                    Size = Vector2.new(250, 335),
+                    Thickness = 0,  
+                    Color = Library.Theme.Outline,
+                    Visible = false
+                    ,
+                    Filled = true
+                })
+                --
+                ESPPreviewOutline.Position = Vector2.new(GetEndedPosition.X + 6, GetEndedPosition.Y)
+                --
+                local ESPPreviewBorder = Utility.AddDrawing("Square", {
+                    Size = Vector2.new(ESPPreviewOutline.Size.X - 2, ESPPreviewOutline.Size.Y - 2),
+                    Position = Vector2.new(ESPPreviewOutline.Position.X + 1, ESPPreviewOutline.Position.Y + 1),
+                    Thickness = 0,
+                    Color = Library.Theme.Accent[1],
+                    Visible = false,
+                    Filled = true
+                })
+                --
+                local ESPPreviewFrame = Utility.AddDrawing("Square", {
+                    Size = Vector2.new(ESPPreviewBorder.Size.X - 2, ESPPreviewBorder.Size.Y - 2),
+                    Position = Vector2.new(ESPPreviewBorder.Position.X + 1, ESPPreviewBorder.Position.Y + 1),
+                    Thickness = 0,
+                    Transparency = 1,
+                    Color = Library.Theme.DarkContrast,
+                    Visible = false,
+                    Filled = true
+                })
+                --
+                local ESPPreviewTitle = Utility.AddDrawing("Text", {
+                    Font = Library.Theme.Font,
+                    Size = Library.Theme.TextSize,
+                    Color = Library.Theme.Text,
+                    Text = "ESP Preview",
+                    Position = Vector2.new(ESPPreviewBorder.Position.X + 8, ESPPreviewBorder.Position.Y + 6),
+                    Visible = false,
+                    Center = false,
+                    Outline = false
+                })
+                --
+                local ESPPreviewOutline = Utility.AddDrawing("Square", {
+                    Size = Vector2.new(230, 300),
+                    Position = Vector2.new(ESPPreviewBorder.Position.X + 10, ESPPreviewBorder.Position.Y + 25),
+                    Thickness = 0,
+                    Transparency = 1,
+                    Color = Library.Theme.Outline,
+                    Visible = false,
+                    Filled = true
+                })
+                --
+                local ESPPreviewInnerBoxBorder = Utility.AddDrawing("Square", {
+                    Size = Vector2.new(ESPPreviewOutline.Size.X - 2, ESPPreviewOutline.Size.Y - 2),
+                    Position = Vector2.new(ESPPreviewOutline.Position.X + 1, ESPPreviewOutline.Position.Y + 1),
+                    Thickness = 0,
+                    Color = Library.Theme.Inline,
+                    Visible = false,
+                    Filled = true
+                })
+                --
+                local ESPPreviewInnerBox = Utility.AddDrawing("Square", {
+                    Size = Vector2.new(ESPPreviewInnerBoxBorder.Size.X - 2, ESPPreviewInnerBoxBorder.Size.Y - 2),
+                    Position = Vector2.new(ESPPreviewInnerBoxBorder.Position.X + 1, ESPPreviewInnerBoxBorder.Position.Y + 1),
+                    Thickness = 0,
+                    Transparency = 1,
+                    Color = Library.Theme.LightContrast,
+                    Visible = false,
+                    Filled = true
+                })
+                --
+                local Dummy = Utility.AddDrawing("Image", {
+                    Transparency = 0.75, 
+                    Visible = false,
+                    Size = Vector2.new(ESPPreviewInnerBox.Size.X - 20, ESPPreviewInnerBox.Size.Y - 50),
+                    Position = Vector2.new(ESPPreviewInnerBox.Position.X + 10, ESPPreviewInnerBox.Position.Y + 10),
+                    Data = Library.Theme.Dummy
+                })
+                --
+                local ESPBoxOutline = Utility.AddDrawing("Square", {
+                    Size = Vector2.new(200, 236),
+                    Position = Vector2.new(Dummy.Position.X + 5, Dummy.Position.Y + 14),
+                    Thickness = 3,
+                    Transparency = 1,
+                    Color = Library.Theme.Outline,
+                    Visible = false,
+                    Filled = false
+                })
+                --
+                local ESPBox = Utility.AddDrawing("Square", {
+                    Size = Vector2.new(200, 236),
+                    Position = Vector2.new(Dummy.Position.X + 5, Dummy.Position.Y + 14),
+                    Thickness = 1,
+                    Transparency = 1,
+                    Color = Library.Theme.Accent[1],
+                    Visible = false,
+                    Filled = false
+                })
+                --
+                local ESPHealthBarOutline = Utility.AddDrawing("Square", {
+                    Size = Vector2.new(2, 236),
+                    Position = Vector2.new(ESPBox.Position.X - 6, ESPBox.Position.Y),
+                    Thickness = 1,
+                    Transparency = 1,
+                    Color = Color3.fromRGB(0, 0, 0),
+                    Visible = false,
+                    Filled = true
+                })
+                --
+                local ESPHealthBar = Utility.AddDrawing("Square", {
+                    Size = Vector2.new(2, 236),
+                    Position = Vector2.new(ESPBox.Position.X - 6, ESPBox.Position.Y),
+                    Thickness = 1,
+                    Transparency = 1,
+                    Color = Color3.fromRGB(0, 255, 0),
+                    Visible = false,
+                    Filled = true
+                })
+                --
+                local ESPName = Utility.AddDrawing("Text", {
+                    Font = Library.Theme.Font,
+                    Size = Library.Theme.TextSize,
+                    Color = Library.Theme.Text,
+                    Text = "Username",
+                    Position = Vector2.new(ESPBox.Position.X + (ESPBox.Size.X / 2), ESPBox.Position.Y - 15),
+                    Visible = false,
+                    Center = true,
+                    Outline = true
+                })
+                --
+                local ESPDistance = Utility.AddDrawing("Text", {
+                    Font = Library.Theme.Font,
+                    Size = Library.Theme.TextSize,
+                    Color = Library.Theme.Text,
+                    Text = "25m",
+                    Position = Vector2.new(ESPBox.Position.X + (ESPBox.Size.X / 2), ESPBox.Position.Y + ESPBox.Size.Y + 2),
+                    Visible = false,
+                    Center = true,
+                    Outline = true
+                })
+                --
+                local ESPWeapon = Utility.AddDrawing("Text", {
+                    Font = Library.Theme.Font,
+                    Size = Library.Theme.TextSize,
+                    Color = Library.Theme.Text,
+                    Text = "Weapon",
+                    Position = Vector2.new(ESPBox.Position.X + (ESPBox.Size.X / 2), ESPBox.Position.Y + ESPBox.Size.Y + 2 + 14),
+                    Visible = false,
+                    Center = true,
+                    Outline = true
+                })
+            
+                function ESPPreviewLib:UpdateName(State, Color)
+                    ESPName.Visible = State; ESPName.Color = Color
+                end
+            
+                function ESPPreviewLib:UpdateBoundingBox(State, Color)
+                    ESPBoxOutline.Visible = State; ESPBox.Visible = State; ESPBox.Color = Color
+                end
+            
+                function ESPPreviewLib:UpdateDistance(State, Color)
+                    ESPDistance.Visible = State; ESPDistance.Color = Color
+                end
+
+                function ESPPreviewLib:UpdateWeapon(State, Color)
+                    ESPWeapon.Visible = State; ESPWeapon.Color = Color
+                end
+            
+                function ESPPreviewLib:UpdateHealthBar(State, Color, Configuration)
+                    ESPHealthBarOutline.Visible = State;
+                    ESPHealthBar.Visible = State; ESPHealthBar.Color = Color
+                    ESPHealthBar.Size = Vector2.new(3, (Configuration.Health / Configuration.MaxHealth) * 236)
+                    ESPHealthBar.Position = Vector2.new(ESPBox.Position.X - 6, ESPBox.Position.Y + (236 - ((Configuration.Health / Configuration.MaxHealth) * 236)))
+                end
+            
+                return ESPPreviewLib
+            end
+            --
             Tab["TabInline"] = TabInline
             Tab["TabOutline"] = TabOutline
             Tab["TabTitle"] = TabTitle
@@ -3937,9 +4325,10 @@ do
 
             local Settings = Window:Tab("Settings")
 
-            local Theme = Settings:Section("Colors", "Left")
+            local Theme = Settings:Section("Theme", "Left")
             
             Theme:Colorpicker({Title = "Accent", Color = LocalTheme.Accent, Flag = "UIAccent", Callback = function(Color)
+                print(Color)
                 Library:UpdateTheme({
                     Accent = Color
                 })
@@ -3989,19 +4378,19 @@ do
             end})
             
             Theme:Dropdown({
-                Title = "Theme Profile",
-                List = {"Default", "Octohook", "Neverlose", "Fatality", "Aimware", "Onetap", "Vape", "Gamesesne", "OldAbyss"},
+                Title = "Theme",
+                List = {"Default", "Neverlose", "Fatality", "Aimware", "Onetap", "Vape", "Gamesense", "OldAbyss"},
                 Default = "Default",
                 Callback = function(Choosen)
                     if Choosen == "Default" then
                         Library:UpdateTheme({
-                            Accent = Color3.fromHex("#7583fa"),
+                            Accent = Color3.fromHex("#322850"),
                             Outline = Color3.fromHex("#000005"),
-                            Inline = Color3.fromHex("#323232"),
-                            LightContrast = Color3.fromHex("#202020"),
-                            DarkContrast = Color3.fromHex("#191919"),
-                            Text = Color3.fromHex("#e8e8e8"),
-                            TextInactive = Color3.fromHex("#aaaaaa")
+                            Inline = Color3.fromHex("#3c3c3c"),
+                            LightContrast = Color3.fromHex("#231946"),
+                            DarkContrast = Color3.fromHex("#191432"),
+                            Text = Color3.fromHex("#c8c8ff"),
+                            TextInactive = Color3.fromHex("#afafaf")
                         })
                     elseif Choosen == "Neverlose" then
                         Library:UpdateTheme({
@@ -4063,7 +4452,7 @@ do
                             LightContrast = Color3.fromHex("#1f1f1f"),
                             DarkContrast = Color3.fromHex("#1a1a1a"),
                         })
-                    elseif Choosen == "Gamesesne" then
+                    elseif Choosen == "Gamesense" then
                         Library:UpdateTheme({
                             Outline = Color3.fromHex("#000000"),
                             Inline = Color3.fromHex("#4e5158"),
@@ -4086,38 +4475,7 @@ do
                     end
                 end
             })
-            local configed = Settings:Section("Configuration", "Right")
-
-configed:TextBox({Title = "Name", Current = "", Flag = "lmao"})
-
-configed:Button({Title = "Create", Callback = function()
-    if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
-        Utility.SaveConfig(Library.Flags["lmao"])
-        window.SendNotification("Normal", ("Created %s Config"):format(Library.Flags["lmao"]), 4)
-    end
-end})
-
-configed:Button({Title = "Load", Callback = function()
-    if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
-        Utility.LoadConfig(Library.Flags["lmao"])
-        window.SendNotification("Normal", ("Loaded %s Config"):format(Library.Flags["lmao"]), 4)
-    end
-end})
-
-configed:Button({Title = "Save", Callback = function()
-    if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
-        Utility.SaveConfig(Library.Flags["lmao"])
-        window.SendNotification("Normal", ("Saved %s Config"):format(Library.Flags["lmao"]), 4)
-    end
-end})
-
-configed:Button({Title = "Delete", Callback = function()
-    if Library.Flags["lmao"] ~= nil and Library.Flags["lmao"] ~= "" then
-        Utility.DeleteConfig(Library.Flags["lmao"])
-        window.SendNotification("Normal", ("Deleted %s Config"):format(Library.Flags["lmao"]), 4)
-    end
-end})
-
+            
             local ClickGUI = Settings:Section("Click GUI", "Right")
             
             ClickGUI:Toggle({
@@ -4274,38 +4632,5 @@ end})
         end
 
         return Window
-    end
-end
-
---
-Utility.AddConnection(UserInput.InputBegan, function(Input, Useless)
-    if Useless then
-        return
-    end
-    if Input.KeyCode == Enum.KeyCode.RightShift then
-        Library:ChangeVisible(not Library.WindowVisible)
-    end
-end)
---
-local Maid = {
-    Connections = {}
-}
-
-Maid.AddConnection = function(Specific, Type, Callback)
-    local Connection = Type:Connect(Callback)
-
-    Specific = Specific or #Maid.Connections + 1
-    Maid.Connections[Specific] = Connection
-    
-    return Connection
-end
-
-Maid.DelConnection = function(Specific)
-    Maid.Connections[Specific]:Disconnect()
-end
-
-Maid.DisconnectAll = function()
-    for Idx, Val in pairs(Maid.Connections) do
-        Val:Disconnect()
     end
 end
