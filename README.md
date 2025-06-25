@@ -1,50 +1,70 @@
-# About Me
-<p allign="center">
-<img src="https://media.discordapp.net/attachments/864455251901415424/951416782399348736/wow_i_like_lightnovel.png">
-<p>
+
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/yukiharadev/yukiharadev/main/Qvbl.gif" style="width: 100%;" />
+</div>  
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
+## **👨‍💻 About Me**  
+
+
+- 👋 My name is **Nguyễn Nam**  
+- 🏫 Studying at **FPT Polyschool**  
+- 🌱 Currently learning **.Net WPF**    
+- 📫 Reach me via **nam.nguyen@hello.end**  
+- 🌐 **[My Portfolio](https://www.nguyenhwang.me/)**  
+
+
+<div align="center">
+  <img src="https://readme-typing-svg.demolab.com/?lines=I+want+to+be+a+web+developer;I+want+to+be+an+cybersecurity+expert" />
+  <br><br>
+   
+  ![Github Readme Daily Quotes](https://readme-daily-quotes.vercel.app/api?author=Yukihara&quote=Feeling+Tired)
   
-![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-![VueJS](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
-![ExpressJS](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
-![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![VSCode](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
-[![Twitter](https://img.shields.io/badge/@jackba__-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/jackba_)
-[![Freelancer](https://img.shields.io/badge/Freelancer-29B2FE?style=for-the-badge&logo=Freelancer&logoColor=white)](https://jackb.link/c)
-![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
-![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
-  
-</p>
+</div>
 
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
-## Hi, I'm Nguyễn Nam :))
-![Total Visits:](https://visitor-badge.glitch.me/badge?page_id=jack-bailey.jack-bailey)
+## **⚡ Skills**  
+<div align="center">
 
-### Who am I?
-I'm a student who addited to scripting before even doule digits.
+[![My Skills](https://skillicons.dev/icons?i=html,css,typescript,javascript,react,nextjs,nodejs,express,java,dotnet,mongodb,flutter&perline=6)]()  
 
-### What am I currently doing?
+</br>  
 
-I'm working on my personal projects and ready for you to hire me :)) 
-I have some various repos here so you can explore around my Github 
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=yukiharadev&layout=compact&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)  
 
+</div>
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Ic0u&hide=TeX&layout=compact&theme=react)
+<img src="https://raw.githubusercontent.com/n0xgg04/n0xgg04/main/w8ZJLtJbmuph.gif" />
 
-### Where can I find out more about you?
+## **📱 Connect With Me**  
+<div align="center">
 
-My personal [website](https://jackbailey.uk) is a great way to find out more about my work.
-My other social media is linked on [here](https://jck.cx).
+<a href="https://www.fb.com/nguyenhwang.dev" target="_blank">
+  <img src="https://img.shields.io/badge/facebook-%232E87FB.svg?&style=for-the-badge&logo=facebook&logoColor=white" />
+</a>
+<a href="https://github.com/yukiharasensei" target="_blank">
+  <img src="https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white" />
+</a>
+<a href="mailto:nguyenhoang.miyuka@gmail.com">
+  <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+</a>
+<a href="https://t.me/nguyenhoangdev">
+  <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" />
+</a>
+<a href="tel:+84333853767">
+  <img src="https://img.shields.io/badge/Zalo-2CA5E0?style=for-the-badge&logo=zalo&logoColor=white" />
+</a>
 
-### I want you to work with me
+</div>
 
-Great! Contact me [here](https://jck.cx/c) and we can get to work.
+---
 
+<div align="center">
 
+![](https://komarev.com/ghpvc/?username=yukiharadev&style=for-the-badge)
 
------
+</div>
 
-### What am I doing right now?
-
-[![Discord Presence](https://lanyard.cnrad.dev/api/792374666286989354?borderRadius=5px&idleMessage=Friend%20me%20on%20discord%20to%20chat!&bg=a)](https://discord.com/users/792374666286989354)
