@@ -37,24 +37,24 @@
 
 </div>
 
-<img src="https://raw.githubusercontent.com/n0xgg04/n0xgg04/main/w8ZJLtJbmuph.gif" />
+<img src="hhttps://i.giphy.com/bTFxidE4ABYu87Cy74.webp" />
 
 ## **📱 Connect With Me**  
 <div align="center">
 
-<a href="https://www.fb.com/nguyenhwang.dev" target="_blank">
+<a href="https://www.facebook.com/nam.nguyen2208/" target="_blank">
   <img src="https://img.shields.io/badge/facebook-%232E87FB.svg?&style=for-the-badge&logo=facebook&logoColor=white" />
 </a>
-<a href="https://github.com/yukiharasensei" target="_blank">
+<a href="https://github.com/Ic0u" target="_blank">
   <img src="https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white" />
 </a>
-<a href="mailto:nguyenhoang.miyuka@gmail.com">
+<a href="mailto:nam.nguyen2208yt@gmail.com">
   <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
 </a>
 <a href="https://t.me/nguyenhoangdev">
   <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" />
 </a>
-<a href="tel:+84333853767">
+<a href="tel:+0909672208">
   <img src="https://img.shields.io/badge/Zalo-2CA5E0?style=for-the-badge&logo=zalo&logoColor=white" />
 </a>
 
