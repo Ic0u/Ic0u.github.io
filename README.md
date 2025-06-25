@@ -1,7 +1,7 @@
 
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/yukiharadev/yukiharadev/main/Qvbl.gif" style="width: 100%;" />
+  <img src="https://media4.giphy.com/media/7q9TwhbiPhphcEQKLS/giphy.gif?cid=82a1493beg61fn0y7nwclv429yuvkb0cb0jei9c7no3e6gp0&ep=v1_videos_related&rid=giphy.gif&ct=v" style="width: 100%;" />
 </div>  
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
